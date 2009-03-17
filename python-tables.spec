@@ -1,13 +1,13 @@
 %define module	tables
 %define name 	python-%{module}
-%define version 2.1
-%define release %mkrel 3
+%define version 2.1.1
+%define release %mkrel 1
 
 Summary: 	Hierarchical datasets in Python
 Name: 	 	%{name}
 Version: 	%{version}
 Release: 	%{release}
-Source0: 	%{module}-%{version}.tar.lzma
+Source0: 	%{module}-%{version}.tar.gz
 Patch0:		setup.py.patch
 License: 	BSD
 Group: 	 	Development/Python
