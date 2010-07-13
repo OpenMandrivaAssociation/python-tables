@@ -42,15 +42,15 @@ when compression is used).
 %patch0 -p0
 
 %build
-%__python setup.py build
+PYTHONDONTWRITEBYTECODE= %__python setup.py build
 
 %install
 %__rm -rf %{buildroot}
-%__python setup.py install --root=%{buildroot} --record=INSTALLED_FILES
+PYTHONDONTWRITEBYTECODE= %__python setup.py install --root=%{buildroot} --record=FILE_LIST
 
 %clean
 %__rm -rf %{buildroot}
 
-%files -f INSTALLED_FILES
+%files -f FILE_LIST
 %defattr(-,root,root)
 %doc *.txt doc/*.pdf LICENSES examples
