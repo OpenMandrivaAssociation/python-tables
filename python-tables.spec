@@ -20,6 +20,7 @@ Obsoletes:	python-pytables <= 2.0.4
 BuildRequires:	python-numpy >= 1.3, python-numpy-devel >= 1.3
 BuildRequires:	python-numexpr >= 1.3
 BuildRequires: 	hdf5-devel >= 1.6.10, bzip2-devel, liblzo-devel
+BuildRequires:	python-cython >= 0.12.1
 BuildRequires:	python-setuptools
 %py_requires -d 
 
