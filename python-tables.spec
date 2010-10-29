@@ -1,7 +1,7 @@
 %define module	tables
 %define name 	python-%{module}
 %define version 2.2
-%define release %mkrel 1
+%define release %mkrel 2
 
 Summary: 	Hierarchical datasets in Python
 Name: 	 	%{name}
