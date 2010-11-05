@@ -1,7 +1,7 @@
 %define module	tables
 %define name 	python-%{module}
-%define version 2.2
-%define release %mkrel 2
+%define version 2.2.1
+%define release %mkrel 1
 
 Summary: 	Hierarchical datasets in Python
 Name: 	 	%{name}
@@ -13,14 +13,14 @@ License: 	BSD
 Group: 	 	Development/Python
 Url: 	 	http://www.pytables.org
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-Requires: 	python-numpy >= 1.3
-Requires:	python-numexpr >= 1.3
+Requires: 	python-numpy >= 1.4.1
+Requires:	python-numexpr >= 1.4.1
 Provides:	python-pytables = %{version}-%{release}
 Obsoletes:	python-pytables <= 2.0.4
-BuildRequires:	python-numpy >= 1.3, python-numpy-devel >= 1.3
-BuildRequires:	python-numexpr >= 1.3
+BuildRequires:	python-numpy >= 1.4.1, python-numpy-devel >= 1.4.1
+BuildRequires:	python-numexpr >= 1.4.1
 BuildRequires: 	hdf5-devel >= 1.6.10, bzip2-devel, liblzo-devel
-BuildRequires:	python-cython >= 0.12.1
+BuildRequires:	python-cython >= 0.13
 BuildRequires:	python-setuptools
 %py_requires -d 
 
