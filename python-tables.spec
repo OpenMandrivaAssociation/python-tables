@@ -1,6 +1,6 @@
 %define module	tables
 %define name 	python-%{module}
-%define version 2.2.1
+%define version 2.3
 %define release %mkrel 1
 
 Summary: 	Hierarchical datasets in Python
@@ -17,7 +17,7 @@ Requires: 	python-numpy >= 1.4.1
 Requires:	python-numexpr >= 1.4.1
 Provides:	python-pytables = %{version}-%{release}
 Obsoletes:	python-pytables <= 2.0.4
-BuildRequires:	python-numpy >= 1.4.1, python-numpy-devel >= 1.4.1
+BuildRequires:	python-numpy-devel >= 1.4.1
 BuildRequires:	python-numexpr >= 1.4.1
 BuildRequires: 	hdf5-devel >= 1.6.10, bzip2-devel, liblzo-devel
 BuildRequires:	python-cython >= 0.13
@@ -42,6 +42,7 @@ when compression is used).
 %patch0 -p0
 
 %build
+export LIBS="dl m"
 PYTHONDONTWRITEBYTECODE= %__python setup.py build
 
 %install
