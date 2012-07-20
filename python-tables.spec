@@ -1,13 +1,18 @@
 %define module	tables
 %define name 	python-%{module}
-%define version 2.3.1
-%define release %mkrel 1
+%define version 2.4.0
+%define	rel		1
+%if %mdkversion < 201100
+%define release %mkrel %{rel}
+%else
+%define release	%{rel}
+%endif
 
 Summary: 	Hierarchical datasets in Python
 Name: 	 	%{name}
 Version: 	%{version}
 Release: 	%{release}
-Source0: 	%{module}-%{version}.tar.gz
+Source0:	http://pypi.python.org/packages/source/t/%{module}/%{module}-%{version}.tar.gz
 Patch0:		setup.py.patch
 License: 	BSD
 Group: 	 	Development/Python
@@ -22,6 +27,7 @@ BuildRequires:	python-numexpr >= 1.4.1
 BuildRequires: 	hdf5-devel >= 1.6.10, bzip2-devel, liblzo-devel
 BuildRequires:	python-cython >= 0.13
 BuildRequires:	python-setuptools
+BuildRequires:	python-sphinx
 %py_requires -d 
 
 %description
@@ -44,14 +50,22 @@ when compression is used).
 %build
 export LIBS="dl m"
 PYTHONDONTWRITEBYTECODE= %__python setup.py build
+pushd doc
+export PYTHONPATH=`ls -1d ../build/lib* | head -1`
+make html
+popd
 
 %install
 %__rm -rf %{buildroot}
-PYTHONDONTWRITEBYTECODE= %__python setup.py install --root=%{buildroot} --record=FILE_LIST
+PYTHONDONTWRITEBYTECODE= %__python setup.py install --root=%{buildroot}
 
 %clean
 %__rm -rf %{buildroot}
 
-%files -f FILE_LIST
+%files 
 %defattr(-,root,root)
-%doc *.txt doc/*.pdf LICENSES examples
+%doc *.txt THANKS doc/build/html/ examples/
+%_bindir/nctoh5
+%_bindir/ptdump
+%_bindir/ptrepack
+%py_platsitedir/%{module}*
