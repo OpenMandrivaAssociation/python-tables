@@ -1,0 +1,23 @@
+--- setup.py.bak	2011-09-26 13:06:05.797804482 -0400
++++ setup.py	2011-09-26 13:11:47.154421852 -0400
+@@ -546,9 +546,19 @@
+         'console_scripts': [
+             'ptdump = tables.scripts.ptdump:main',
+             'ptrepack = tables.scripts.ptrepack:main',
+-            'nctoh5 = tables.netcdf3.scripts.nctoh5:main [netCDF]',
+             ],
+         }
++
++    # Create nctoh5 script only when ScientificPython is installed:
++    try:
++        import Scientific.IO.NetCDF
++    except ImportError:
++        pass
++    else:
++        setuptools_kwargs['entry_points']['console_scripts'].append(
++            'nctoh5 = tables.netcdf3.scripts.nctoh5:main [netCDF]'
++            )
++
+     # Test suites.
+     setuptools_kwargs['test_suite'] = 'tables.tests.test_all.suite'
+     setuptools_kwargs['scripts'] = []
