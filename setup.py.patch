@@ -19,20 +19,3 @@
      # Test suites.
      setuptools_kwargs['test_suite'] = 'tables.tests.test_all.suite'
      setuptools_kwargs['scripts'] = []
-@@ -616,7 +624,15 @@
-         'tables.tests', 'tables.nodes.tests',
-         'tables.netcdf3.tests', 'tables.nra.tests']
-     setuptools_kwargs['scripts'] = [
--        'utils/ptdump', 'utils/ptrepack', 'utils/nctoh5']
-+        'utils/ptdump', 'utils/ptrepack']
-+    # Create nctoh5 script only when ScientificPython is installed:
-+    try:
-+        import Scientific.IO.NetCDF
-+    except ImportError:
-+        pass
-+    else:
-+        setuptools_kwargs['scripts'].append('utils/nctoh5')
-+        
- # Copy additional data for packages that need it.
- setuptools_kwargs['package_data'] = {
-     'tables.tests': ['*.h5'],
