@@ -1,13 +1,9 @@
 %define module	tables
-%define name 	python-%{module}
-%define version 2.4.0
-%define	rel		2
-%define release	%{rel}
 
 Summary: 	Hierarchical datasets in Python
-Name: 	 	%{name}
-Version: 	%{version}
-Release: 	%{release}
+Name: 	 	python-%{module}
+Version: 	2.4.0
+Release: 	3}
 Source0:	http://pypi.python.org/packages/source/t/%{module}/%{module}-%{version}.tar.gz
 Patch0:		setup.py.patch
 License: 	BSD
@@ -16,7 +12,7 @@ Url: 	 	http://www.pytables.org
 Requires: 	python-numpy >= 1.4.1
 Requires:	python-numexpr >= 1.4.1
 Provides:	python-pytables = %{version}-%{release}
-Obsoletes:	python-pytables <= 2.0.4
+Obsoletes:	python-pytables < %{version}-%{release}
 BuildRequires:	python-numpy-devel >= 1.4.1
 BuildRequires:	python-numexpr >= 1.4.1
 BuildRequires: 	hdf5-devel >= 1.6.10, bzip2-devel, liblzo-devel
@@ -55,7 +51,6 @@ popd
 PYTHONDONTWRITEBYTECODE= %__python setup.py install --root=%{buildroot}
 
 %files 
-%defattr(-,root,root)
 %doc *.txt THANKS doc/build/html/ examples/
 %_bindir/nctoh5
 %_bindir/ptdump
