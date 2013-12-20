@@ -51,6 +51,7 @@ Group:          Development/Python
 Requires: 	python3-numpy
 Requires:	python3-numexpr
 BuildRequires:	python3-numpy
+BuildRequires:	python3-numpy-devel
 BuildRequires:	python3-numexpr
 BuildRequires:	python3-distribute
 BuildRequires:	pkgconfig(python3)
