@@ -18,7 +18,7 @@ BuildRequires:	bzip2-devel
 BuildRequires:	lzo-devel
 BuildRequires:	python-cython >= 0.13
 BuildRequires:	python-setuptools
-BuildRequires:	pkgconfig(python)
+BuildRequires:	pkgconfig(python3)
 BuildRequires:	python-sphinx
 BuildRequires:	pkgconfig(lapack)
 %rename python-pytables
