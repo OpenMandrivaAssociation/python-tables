@@ -69,6 +69,7 @@ python3 bench/check_all.py
 %{_bindir}/pt2to3
 %{_bindir}/ptdump
 %{_bindir}/ptrepack
+%{_bindir}/pttree
 %{py3_platsitedir}/%{module}
 %{py3_platsitedir}/%{module}-%{version}-py*.egg-info
 
