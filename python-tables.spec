@@ -3,7 +3,7 @@
 Summary: 	Hierarchical datasets in Python
 Name: 	 	python-%{module}
 Version: 	3.0.0
-Release: 	2
+Release: 	3
 Source0: 	https://pypi.python.org/packages/source/t/%{module}/%{module}-%{version}.tar.gz
 License: 	BSD
 Group: 	 	Development/Python
@@ -22,6 +22,7 @@ BuildRequires:	pkgconfig(python)
 BuildRequires:	python-sphinx
 BuildRequires:	pkgconfig(lapack)
 %rename python-pytables
+%rename	python3-tables
 
 %description
 PyTables is a Python package for managing hierarchical datasets
@@ -45,20 +46,20 @@ BuildArch:	noarch
 The %{name}-doc package contains the documentation related to 
 PyTables.
 
-%package -n python3-%{module}
+%package -n python2-%{module}
 Summary:        Hierarchical datasets in Python 3
 Group:          Development/Python
-Requires: 	python3-numpy
-Requires:	python3-numexpr
-BuildRequires:	python3-numpy
-BuildRequires:	python3-numpy-devel
-BuildRequires:	python3-numexpr
-BuildRequires:	python3-distribute
-BuildRequires:	pkgconfig(python3)
-BuildRequires:	python3-cython
+Requires: 	python2-numpy
+Requires:	python2-numexpr
+BuildRequires:	python2-numpy
+BuildRequires:	python2-numpy-devel
+BuildRequires:	python2-numexpr
+BuildRequires:	python2-distribute
+BuildRequires:	pkgconfig(python2)
+BuildRequires:	python2-cython
 
-%description -n python3-%{module}
-PyTables is a Python 3 package for managing hierarchical datasets
+%description -n python2-%{module}
+PyTables is a Python 2 package for managing hierarchical datasets
 designed to efficiently and easily cope with extremely large amounts
 of data. It is built on top of the HDF5 library and the NumPy package
 (numarray and Numeric are also supported). PyTables features an
@@ -81,7 +82,7 @@ find python3/utils -name 'pt*' | xargs sed -i '1s|^#!/usr/bin/env python|#!pytho
 %build
 export LIBS="dl m"
 pushd python2
-CFLAGS="%{optflags}" python setup.py build
+CFLAGS="%{optflags}" python2 setup.py build
 popd
 
 pushd python3
@@ -91,15 +92,15 @@ popd
 %install
 pushd python3
 python3 setup.py install -O1 --skip-build --root %{buildroot}
-mv %{buildroot}/usr/bin/pt2to3 %{buildroot}/usr/bin/pt2to33
-mv %{buildroot}/usr/bin/ptdump %{buildroot}/usr/bin/ptdump3
-mv %{buildroot}/usr/bin/ptrepack %{buildroot}/usr/bin/ptrepack3
 popd
 
 pushd python2
 chmod -x examples/check_examples.sh
 for i in utils/*; do sed -i 's|bin/env |bin/|' $i; done
-python setup.py install -O1 --skip-build --root=%{buildroot}
+python2 setup.py install -O1 --skip-build --root=%{buildroot}
+mv %{buildroot}/usr/bin/pt2to3 %{buildroot}/usr/bin/pt2to32
+mv %{buildroot}/usr/bin/ptdump %{buildroot}/usr/bin/ptdump2
+mv %{buildroot}/usr/bin/ptrepack %{buildroot}/usr/bin/ptrepack2
 popd
 
 %check
@@ -114,26 +115,26 @@ pushd python2
 libdir=`ls build/|grep lib`
 export PYTHONPATH=`pwd`/build/$libdir
 echo "import tables; tables.test()" > bench/check_all.py
-python bench/check_all.py
+python2 bench/check_all.py
 popd
 
 
 %files
-%doc python2/*.txt python2/LICENSES
+%doc python3/*.txt python2/LICENSES
 %{_bindir}/pt2to3
 %{_bindir}/ptdump
 %{_bindir}/ptrepack
-%{py_platsitedir}/%{module}
-%{py_platsitedir}/%{module}-%{version}-py*.egg-info
-
-%files doc
-%doc python2/examples/
-%doc python2/doc/html/
-
-%files -n python3-%{module}
-%doc python3/*.txt python3/LICENSES
-%{_bindir}/pt2to33
-%{_bindir}/ptdump3
-%{_bindir}/ptrepack3
 %{py3_platsitedir}/%{module}
 %{py3_platsitedir}/%{module}-%{version}-py*.egg-info
+
+%files doc
+%doc python3/examples/
+%doc python3/doc/html/
+
+%files -n python2-%{module}
+%doc python2/*.txt python3/LICENSES
+%{_bindir}/pt2to32
+%{_bindir}/ptdump2
+%{_bindir}/ptrepack2
+%{py2_platsitedir}/%{module}
+%{py2_platsitedir}/%{module}-%{version}-py*.egg-info
