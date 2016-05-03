@@ -2,8 +2,8 @@
 
 Summary: 	Hierarchical datasets in Python
 Name: 	 	python-%{module}
-Version: 	3.0.0
-Release: 	3
+Version: 	3.2.2
+Release: 	1
 Source0: 	https://pypi.python.org/packages/source/t/%{module}/%{module}-%{version}.tar.gz
 License: 	BSD
 Group: 	 	Development/Python
@@ -47,7 +47,7 @@ The %{name}-doc package contains the documentation related to
 PyTables.
 
 %package -n python2-%{module}
-Summary:        Hierarchical datasets in Python 3
+Summary:        Hierarchical datasets in Python 2
 Group:          Development/Python
 Requires: 	python2-numpy
 Requires:	python2-numexpr
