@@ -15,7 +15,7 @@ BuildRequires:	python-numpy-devel >= 1.4.1
 BuildRequires:	python-numexpr >= 1.4.1
 BuildRequires: 	hdf5-devel >= 1.6.10
 BuildRequires:	bzip2-devel
-BuildRequires:	lzo-devel
+BuildRequires:	pkgconfig(lzo2)
 BuildRequires:	python-cython >= 0.13
 BuildRequires:	python-setuptools
 BuildRequires:	pkgconfig(python3)
