@@ -2,9 +2,9 @@
 
 Summary: 	Hierarchical datasets in Python
 Name: 	 	python-%{module}
-Version: 	3.2.2
-Release: 	2
-Source0: 	https://pypi.python.org/packages/source/t/%{module}/%{module}-%{version}.tar.gz
+Version: 	3.4.4
+Release: 	1
+Source0: 	https://pypi.io/packages/source/t/tables/tables-%{version}.tar.gz
 License: 	BSD
 Group: 	 	Development/Python
 Url: 	 	http://www.pytables.org
@@ -53,7 +53,7 @@ find utils -name 'pt*' | xargs sed -i '1s|^#!/usr/bin/env python|#!python3|'
 
 %build
 export LIBS="dl m"
-CFLAGS="%{optflags}" python3 setup.py build
+CFLAGS="%{optflags}" %py3_build
 
 %install
 python3 setup.py install -O1 --skip-build --root %{buildroot}
