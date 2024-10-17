@@ -7,7 +7,7 @@ Release: 	2
 Source0: 	https://pypi.python.org/packages/source/t/%{module}/%{module}-%{version}.tar.gz
 License: 	BSD
 Group: 	 	Development/Python
-Url: 	 	http://www.pytables.org
+Url: 	 	https://www.pytables.org
 Requires: 	python-numpy >= 1.4.1
 Requires:	python-numexpr >= 1.4.1
 BuildRequires:	python-numpy >= 1.4.1
